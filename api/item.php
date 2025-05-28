@@ -26,7 +26,7 @@ if ($method == 'GET'){
     // image_type 0 is item_type
     $sql = "SELECT image_name
             FROM images
-            WHERE type_id = ? AND image_type = 0";
+            WHERE image_id = ? AND image_type = 0";
     $result = get($sql,array($item['item_id']),true);
     $item['item_images'] = $result;
     echo json_encode($item);
@@ -56,7 +56,7 @@ if ($method == 'POST'){
             $date_created = date("Y-m-d H:i:s");
             $image_type = 0; //0 for item_image
             $sql = "INSERT INTO images
-            (`user_id`, `image_type`, `image_name`, `time_created`, `type_id`) 
+            (`user_id`, `image_type`, `image_name`, `time_created`, `image_id`) 
             VALUES (?,?,?,?,?)";
             print_r(array($infor['id'],$image_type,$name,$date_created,$item['item_id']));
             get($sql,array($infor['id'],$image_type,$name,$date_created,$item['item_id']));
